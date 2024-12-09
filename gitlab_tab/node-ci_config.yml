@@ -1,0 +1,21 @@
+# ci_config.yml
+variables:
+  # Image Information
+  IMAGE_NAME: $CI_REGISTRY_IMAGE
+  PACKAGE_JSON_PATH: app/package.json
+  DOCKER_REGISTRY: $CI_REGISTRY
+  DEV_SERVER_HOST: 35.180.46.122
+  DEV_ENDPOINT: http://ec2-35-180-46-122.eu-west-3.compute.amazonaws.com:3000
+  STAGING_SERVER_HOST: 35.180.46.122
+  STAGING_ENDPOINT: http://ec2-35-180-46-122.eu-west-3.compute.amazonaws.com:4000
+  PROD_SERVER_HOST: 35.180.46.122
+  PROD_ENDPOINT: http://ec2-35-180-46-122.eu-west-3.compute.amazonaws.com:5000
+
+  # Default Tags for Jobs
+  DEFAULT_TAGS: "ec2, docker, remote"
+  BUILD_TAGS: "ec2, shell, remote"
+  DEPLOY_TAGS: "ec2, shell, remote"
+
+  # Docker Registry Login Credentials
+  DOCKER_USERNAME: $CI_REGISTRY_USER
+  DOCKER_PASSWORD: $CI_REGISTRY_PASSWORD

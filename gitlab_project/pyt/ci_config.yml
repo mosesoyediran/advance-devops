@@ -1,0 +1,27 @@
+# ci_config.yml
+variables:
+  # Image Information
+  IMAGE_NAME: nanajanashia/demo-app
+  IMAGE_TAG: python-app-1.0
+
+  # Docker Configuration
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_IMAGE: docker:20.10.16
+  DOCKER_DIND: docker:20.10.16-dind
+
+  # Docker Registry Login Credentials
+  REGISTRY_USER: $CI_REGISTRY_USER
+  REGISTRY_PASS: $CI_REGISTRY_PASSWORD
+
+  # SSH Configuration for Deployment
+  SSH_HOST: 161.35.223.117
+  SSH_USER: root
+  SSH_KEY: $SSH_PRIVATE_KEY
+
+# Tags for jobs (if required in future, can be changed here)
+tags:
+  default: &default_tags
+    - docker
+
+# Default Python Image for Tests
+python_image: &python_image python:3.9-slim-buster

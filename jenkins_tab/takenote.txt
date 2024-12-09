@@ -1,0 +1,20 @@
+root@192:~# docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+
+
+root@192:~# docker ps
+CONTAINER ID   IMAGE                 COMMAND                  CREATED         STATUS         PORTS                                                                                      NAMES
+f547b8384d5d   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   3 minutes ago   Up 3 minutes   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 0.0.0.0:50000->50000/tcp, :::50000->50000/tcp   amazing_yonath
+root@192:~# docker exec -it f547b8384d5d bash
+jenkins@f547b8384d5d:/$ cat /var/jenkins_home/secrets/initialAdminPassword
+5e5b97b628324e908c0bf70f8f6430c9
+
+install plugin 
+
+api_tokenapi_token
+117110c568ce2d5c06a6c2507227f2b9de
+
+
+
+
+scp -i /Users/moses/Documents/documents/dvp.zip root@192.168.86.120:/home

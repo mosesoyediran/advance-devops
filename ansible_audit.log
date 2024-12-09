@@ -1,0 +1,166 @@
+2024-10-07 13:07:24,615 - INFO - Connected (version 2.0, client OpenSSH_9.2p1)
+2024-10-07 13:07:24,715 - INFO - Authentication (publickey) failed.
+2024-10-07 13:07:24,772 - INFO - Authentication (publickey) failed.
+2024-10-07 13:07:24,825 - INFO - Authentication (publickey) failed.
+2024-10-07 13:07:24,875 - INFO - Authentication (publickey) failed.
+2024-10-07 13:07:24,898 - INFO - Authentication (publickey) failed.
+2024-10-07 13:07:24,921 - INFO - Disconnect (code 2): Too many authentication failures
+2024-10-07 13:07:36,223 - INFO - Connected (version 2.0, client OpenSSH_9.2p1)
+2024-10-07 13:07:36,295 - INFO - Authentication (publickey) failed.
+2024-10-07 13:07:36,344 - INFO - Authentication (publickey) failed.
+2024-10-07 13:07:36,371 - INFO - Authentication (publickey) failed.
+2024-10-07 13:07:36,393 - INFO - Authentication (publickey) failed.
+2024-10-07 13:07:36,417 - INFO - Authentication (publickey) failed.
+2024-10-07 13:07:36,439 - INFO - Disconnect (code 2): Too many authentication failures
+2024-10-07 14:14:54,345 - INFO - Connected (version 2.0, client OpenSSH_9.2p1)
+2024-10-07 14:14:54,427 - INFO - Authentication (publickey) failed.
+2024-10-07 14:14:54,472 - INFO - Authentication (publickey) failed.
+2024-10-07 14:14:54,497 - INFO - Authentication (publickey) failed.
+2024-10-07 14:14:54,517 - INFO - Authentication (publickey) failed.
+2024-10-07 14:14:54,537 - INFO - Authentication (publickey) failed.
+2024-10-07 14:14:54,557 - INFO - Disconnect (code 2): Too many authentication failures
+2024-10-07 14:14:59,209 - INFO - Connected (version 2.0, client OpenSSH_9.2p1)
+2024-10-07 14:14:59,285 - INFO - Authentication (publickey) failed.
+2024-10-07 14:14:59,364 - INFO - Authentication (publickey) failed.
+2024-10-07 14:14:59,424 - INFO - Authentication (publickey) failed.
+2024-10-07 14:14:59,473 - INFO - Authentication (publickey) failed.
+2024-10-07 14:14:59,519 - INFO - Authentication (publickey) failed.
+2024-10-07 14:14:59,565 - INFO - Disconnect (code 2): Too many authentication failures
+2024-10-07 14:15:46,004 - INFO - Connected (version 2.0, client OpenSSH_9.2p1)
+2024-10-07 14:15:46,081 - INFO - Authentication (publickey) failed.
+2024-10-07 14:15:46,156 - INFO - Authentication (publickey) failed.
+2024-10-07 14:15:46,208 - INFO - Authentication (publickey) failed.
+2024-10-07 14:15:46,264 - INFO - Authentication (publickey) failed.
+2024-10-07 14:15:46,308 - INFO - Authentication (publickey) failed.
+2024-10-07 14:15:46,361 - INFO - Disconnect (code 2): Too many authentication failures
+2024-10-07 14:16:43,248 - INFO - Connected (version 2.0, client OpenSSH_9.2p1)
+2024-10-07 14:16:43,328 - INFO - Authentication (publickey) failed.
+2024-10-07 14:16:43,393 - INFO - Authentication (publickey) failed.
+2024-10-07 14:16:43,435 - INFO - Authentication (publickey) failed.
+2024-10-07 14:16:43,457 - INFO - Authentication (publickey) failed.
+2024-10-07 14:16:43,480 - INFO - Authentication (publickey) failed.
+2024-10-07 14:16:43,503 - INFO - Disconnect (code 2): Too many authentication failures
+2024-10-07 14:17:04,650 - INFO - Connected (version 2.0, client OpenSSH_9.2p1)
+2024-10-07 14:17:04,746 - INFO - Authentication (publickey) failed.
+2024-10-07 14:17:04,788 - INFO - Authentication (publickey) failed.
+2024-10-07 14:17:04,813 - INFO - Authentication (publickey) failed.
+2024-10-07 14:17:04,835 - INFO - Authentication (publickey) failed.
+2024-10-07 14:17:04,858 - INFO - Authentication (publickey) failed.
+2024-10-07 14:17:04,882 - INFO - Disconnect (code 2): Too many authentication failures
+2024-10-07 14:18:21,244 - INFO - Connected (version 2.0, client OpenSSH_9.2p1)
+2024-10-07 14:18:21,315 - INFO - Authentication (publickey) failed.
+2024-10-07 14:18:21,366 - INFO - Authentication (publickey) failed.
+2024-10-07 14:18:21,392 - INFO - Authentication (publickey) failed.
+2024-10-07 14:18:21,416 - INFO - Authentication (publickey) failed.
+2024-10-07 14:18:21,437 - INFO - Authentication (publickey) failed.
+2024-10-07 14:18:21,459 - INFO - Disconnect (code 2): Too many authentication failures
+2024-10-07 14:19:37,347 - INFO - Connected (version 2.0, client OpenSSH_9.2p1)
+2024-10-07 14:19:37,431 - INFO - Authentication (publickey) failed.
+2024-10-07 14:19:37,508 - INFO - Authentication (publickey) failed.
+2024-10-07 14:19:37,563 - INFO - Authentication (publickey) failed.
+2024-10-07 14:19:37,614 - INFO - Authentication (publickey) failed.
+2024-10-07 14:19:37,663 - INFO - Authentication (publickey) failed.
+2024-10-07 14:19:37,713 - INFO - Disconnect (code 2): Too many authentication failures
+2024-10-07 14:43:21,035 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 14:43:23,408 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 14:43:44,344 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 14:46:21,345 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 14:46:22,663 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 14:46:23,366 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x147c70950>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 14:46:23,366 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x150926ed0>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 14:46:23,367 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x157e77a50>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 14:50:10,162 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 14:50:16,192 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 14:50:17,470 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 14:50:18,140 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1326d8050>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 14:50:18,141 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x13644b790>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 14:50:18,141 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x13644afd0>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:08:23,199 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:11:30,658 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:19:14,446 - INFO - Project folder 'avc' created in '/Users/moses/Documents/documents/dvp/playbooks'.
+2024-10-07 15:19:14,449 - ERROR - Failed to copy project files: [Errno 2] No such file or directory: '/Users/moses/Documents/documents/dvp/ansible_tab/templates/k8s-project-vars.yml'
+2024-10-07 15:19:14,450 - INFO - Copied inventory 'joygiver.ini' to project hosts file in '/Users/moses/Documents/documents/dvp/playbooks/avc'.
+2024-10-07 15:21:26,607 - INFO - Project folder 'adb' created in '/Users/moses/Documents/documents/dvp/playbooks'.
+2024-10-07 15:21:26,612 - INFO - Copied inventory 'joygiver.ini' to project hosts file in '/Users/moses/Documents/documents/dvp/playbooks/adb'.
+2024-10-07 15:27:06,912 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:27:11,791 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:29:12,745 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:29:15,805 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:29:16,935 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:29:17,626 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x300693b90>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:29:17,627 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x174ebe210>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:29:17,630 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x300693050>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:39:55,987 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:39:59,029 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:40:00,297 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:40:00,948 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x300449c10>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:40:00,948 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x30044b850>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:40:00,949 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x16a0a9cd0>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:42:57,147 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:43:02,059 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:43:03,306 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:43:03,941 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1668c2750>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:43:03,941 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1668f2f50>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:43:03,942 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1668f15d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:46:54,268 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:46:57,679 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:46:58,936 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:46:59,592 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x142047310>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:46:59,592 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x14205bb50>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:46:59,593 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x14205b310>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:57:58,287 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:58:02,207 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:58:03,449 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-07 15:58:04,124 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x168f4a890>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:58:04,125 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x167930690>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-07 15:58:04,126 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x168f7bfd0>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:05:26,850 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:05:30,005 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:05:31,269 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:05:31,926 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x14a07f450>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:05:31,926 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x149fcee50>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:05:31,927 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x14b34a250>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:15:22,886 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:15:28,425 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:15:29,724 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:15:30,404 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x30212a510>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:15:30,405 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x305b5b950>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:15:30,405 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x305b5b110>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:19:08,410 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:19:11,196 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:19:13,207 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x305e27b90>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:19:13,208 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x305937dd0>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:19:13,208 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x3122ab950>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:24:51,355 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:24:54,311 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:24:55,573 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:24:56,214 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x17ef88fd0>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:24:56,214 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x17ef5bd50>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:24:56,215 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x17ef5b510>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:26:39,725 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:26:42,729 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:26:43,883 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:26:44,524 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x177b47ed0>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:26:44,525 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x177b77650>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:26:44,525 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x177b75290>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:27:46,413 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x16656be10>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:27:46,415 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x169488710>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:27:46,415 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x16656b650>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:32:56,377 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:33:18,805 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:33:26,535 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:33:27,722 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:33:28,325 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x14306bc90>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:33:28,326 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x14309f810>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:33:28,326 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x14309da90>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:48:25,027 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:48:27,744 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:48:29,036 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:48:29,704 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x169943790>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:48:29,705 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x16994d890>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:48:29,705 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x16ad76e50>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:54:50,770 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:54:53,438 - INFO - Found credentials in shared credentials file: ~/.aws/credentials
+2024-10-08 12:54:55,303 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x136d3c850>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:54:55,303 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x30b8bbe50>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces
+2024-10-08 12:54:55,304 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x30b8bb650>: Failed to establish a new connection: [Errno 61] Connection refused')': /api/v1/namespaces

@@ -1,0 +1,309 @@
+---
+- name: Set Hostnames for Nodes
+  hosts: all
+  become: true
+  tasks:
+    - name: Set hostname
+      hostname:
+        name: "{{ inventory_hostname }}"
+
+- name: Set Dynamic Hostnames for Kubernetes Nodes
+  hosts: all
+  become: true
+  vars:
+    hostname_prefix: "k8s" # Prefix for hostnames (customizable)
+    # Gather the hostnames of all nodes for the /etc/hosts update
+    all_nodes: "{{ groups['masters'] + groups['workers'] }}"
+  tasks:
+    - name: Generate dynamic hostname for master node
+      set_fact:
+        dynamic_hostname: "{{ hostname_prefix }}-master"
+      when: "'masters' in group_names"
+
+    - name: Generate dynamic hostname for worker nodes
+      set_fact:
+        dynamic_hostname: "{{ hostname_prefix }}-worker{{ groups['workers'].index(inventory_hostname) + 1 }}"
+      when: "'workers' in group_names"
+
+    - name: Set the system hostname
+      ansible.builtin.hostname:
+        name: "{{ dynamic_hostname }}"
+      when: dynamic_hostname is defined
+
+    - name: Update /etc/hostname file
+      copy:
+        dest: /etc/hostname
+        content: "{{ dynamic_hostname }}\n"
+      when: dynamic_hostname is defined
+
+    - name: Update /etc/hosts with hostname mapping for all nodes
+      lineinfile:
+        path: /etc/hosts
+        line: "{{ hostvars[item].ansible_default_ipv4.address }} {{ hostvars[item].dynamic_hostname }}"
+        state: present
+      loop: "{{ all_nodes }}"
+      when: dynamic_hostname is defined
+
+- name: Kubernetes Cluster Setup
+  hosts: all
+  become: true
+  vars_files:
+    - k8s_project-vars.yml
+  tasks:
+    - name: Ensure python3-apt is installed (Ubuntu)
+      apt:
+        name: python3-apt
+        state: present
+
+    - name: Update and Upgrade APT Packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Install Required Packages
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+
+        - name: Add Helm GPG Key
+        ansible.builtin.shell: |
+          curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+  
+      - name: Add Helm APT Repository
+        ansible.builtin.shell: |
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+  
+      - name: Update APT cache after adding Helm repository
+        ansible.builtin.apt:
+          update_cache: yes
+  
+      - name: Install Helm
+        apt:
+          name: helm
+          state: present
+
+    - name: Add Docker GPG Key
+      apt_key:
+        url: "{{ docker_gpg_key_url }}"
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: "deb [arch=amd64] {{ docker_repo_url }} {{ ansible_distribution_release }} stable"
+        state: present
+
+    - name: Ensure keyring directory exists
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: "0755"
+
+    - name: Add Kubernetes GPG Key
+      ansible.builtin.apt_key:
+        url: "{{ kubernetes_gpg_key_url }}"
+        state: present
+        keyring: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+    - name: Add Kubernetes Repository
+      ansible.builtin.apt_repository:
+        repo: "{{ kubernetes_repo }}"
+        state: present
+
+    - name: Update APT cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install containerd
+      apt:
+        name: containerd
+        state: present
+
+    - name: Configure containerd
+      shell: |
+        mkdir -p /etc/containerd
+        containerd config default | tee /etc/containerd/config.toml
+      args:
+        creates: /etc/containerd/config.toml
+
+    - name: Set Systemd as cgroup driver
+      replace:
+        path: /etc/containerd/config.toml
+        regexp: "SystemdCgroup = false"
+        replace: "SystemdCgroup = true"
+
+    - name: Restart and Enable containerd
+      systemd:
+        name: containerd
+        state: restarted
+        enabled: true
+
+    - name: Disable Swap
+      shell: |
+        swapoff -a
+        sed -i '/ swap / s/^/#/' /etc/fstab
+
+    - name: Load Kernel Modules
+      modprobe:
+        name: "{{ item }}"
+      loop:
+        - overlay
+        - br_netfilter
+
+    - name: Add Kernel Modules to Load at Boot
+      copy:
+        dest: /etc/modules-load.d/k8s.conf
+        content: |
+          overlay
+          br_netfilter
+
+    - name: Apply sysctl params
+      copy:
+        dest: /etc/sysctl.d/k8s.conf
+        content: |
+          net.bridge.bridge-nf-call-iptables  = 1
+          net.ipv4.ip_forward                 = 1
+          net.bridge.bridge-nf-call-ip6tables = 1
+
+    - name: Reload sysctl
+      command: sysctl --system
+
+    - name: Install Kubernetes Components
+      apt:
+        name:
+          - "kubelet={{ kubernetes_version }}"
+          - "kubeadm={{ kubeadm_version }}"
+          - "kubectl={{ kubectl_version }}"
+        state: present
+        allow_downgrade: yes
+        update_cache: yes
+
+    - name: Hold Kubernetes Packages
+      shell: "apt-mark hold kubelet kubeadm kubectl"
+
+- name: Initialize Master Node
+  hosts: masters
+  become: true
+  vars_files:
+    - k8s_project-vars.yml
+  tasks:
+    - name: Initialize Kubernetes Cluster
+      command: kubeadm init --pod-network-cidr={{ pod_network_cidr }} --kubernetes-version={{ kubernetes_semver }}
+      args:
+        creates: /etc/kubernetes/admin.conf
+
+    - name: Create .kube Directory
+      file:
+        path: /home/{{ ansible_user }}/.kube
+        state: directory
+        owner: "{{ ansible_user }}"
+        mode: "0755"
+
+    - name: Copy Kube Config
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /home/{{ ansible_user }}/.kube/config
+        owner: "{{ ansible_user }}"
+        mode: "0644"
+        remote_src: yes
+
+    - name: Install Calico Network Plugin
+      become: false
+      environment:
+        KUBECONFIG: /home/{{ ansible_user }}/.kube/config
+      shell: kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+
+    - name: Generate Join Command
+      command: kubeadm token create --print-join-command
+      register: join_command
+
+    - name: Save Join Command
+      set_fact:
+        join_command: "{{ join_command.stdout }}"
+
+- name: Join Worker Nodes
+  hosts: workers
+  become: true
+  vars_files:
+    - k8s_project-vars.yml
+  tasks:
+    - name: Join Cluster
+      command: "{{ hostvars[groups['masters'][0]]['join_command'] }} --ignore-preflight-errors=all"
+      args:
+        creates: /etc/kubernetes/kubelet.conf
+
+- name: Deploy Kubernetes Dashboard
+  hosts: masters
+  become: true
+  vars_files:
+    - k8s_project-vars.yml
+  tasks:
+    - name: Install Kubernetes Dashboard
+      become: false
+      environment:
+        KUBECONFIG: /home/{{ ansible_user }}/.kube/config
+      shell: kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+
+    - name: Create Admin Service Account
+      become: false
+      environment:
+        KUBECONFIG: /home/{{ ansible_user }}/.kube/config
+      copy:
+        dest: /home/{{ ansible_user }}/dashboard-adminuser.yaml
+        content: |
+          apiVersion: v1
+          kind: ServiceAccount
+          metadata:
+            name: admin-user
+            namespace: kubernetes-dashboard
+          ---
+          apiVersion: rbac.authorization.k8s.io/v1
+          kind: ClusterRoleBinding
+          metadata:
+            name: admin-user
+          roleRef:
+            apiGroup: rbac.authorization.k8s.io
+            kind: ClusterRole
+            name: cluster-admin
+          subjects:
+            - kind: ServiceAccount
+              name: admin-user
+              namespace: kubernetes-dashboard
+
+    - name: Apply Admin Service Account
+      become: false
+      environment:
+        KUBECONFIG: /home/{{ ansible_user }}/.kube/config
+      shell: kubectl apply -f /home/{{ ansible_user }}/dashboard-adminuser.yaml
+
+    - name: Obtain Dashboard Access Token
+      become: false
+      environment:
+        KUBECONFIG: /home/{{ ansible_user }}/.kube/config
+      shell: kubectl -n kubernetes-dashboard create token admin-user
+      register: dashboard_token
+
+    - name: Display Dashboard Access Information
+      debug:
+        msg: |
+          Access the Kubernetes Dashboard at:
+          https://{{ inventory_hostname }}:6443/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+
+          Use the following token:
+          {{ dashboard_token.stdout }}
+
+- name: Install Metrics Server
+  hosts: masters
+  become: true
+  tasks:
+    - name: Deploy Metrics Server
+      become: false
+      environment:
+        KUBECONFIG: /home/{{ ansible_user }}/.kube/config
+      shell: |
+        kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+        kubectl patch deployment metrics-server -n kube-system --type='json' -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'

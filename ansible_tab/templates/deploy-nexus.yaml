@@ -1,0 +1,127 @@
+---
+- name: Install Java and net-tools
+  hosts: "{{ target_hosts }}"
+  vars_files:
+    - nexus_project-vars.yml
+  tasks:
+    - name: Update apt repository and cache
+      ansible.builtin.apt:
+        update_cache: yes
+        force_apt_get: yes
+        cache_valid_time: 3600
+
+    - name: Install Java 8
+      ansible.builtin.apt:
+        name: "{{ java_package }}"
+        state: present
+
+    - name: Install net-tools
+      ansible.builtin.apt:
+        name: "{{ nettools_package }}"
+        state: present
+
+- name: Download and unpack Nexus installer
+  hosts: "{{ target_hosts }}"
+  vars_files:
+    - nexus_project-vars.yml
+  tasks: 
+    - name: Check if Nexus folder exists
+      ansible.builtin.stat:
+        path: "{{ nexus_install_path }}"
+      register: stat_result  
+
+    - name: Download Nexus
+      ansible.builtin.get_url: 
+        url: "{{ nexus_download_url }}"
+        dest: "{{ nexus_download_dest }}"
+      register: download_result  
+
+    - name: Untar Nexus installer
+      ansible.builtin.unarchive:
+        src: "{{ download_result.dest }}"
+        dest: "{{ nexus_install_dest }}"
+        remote_src: yes   
+      when: not stat_result.stat.exists    
+
+    - name: Find Nexus folder
+      ansible.builtin.find: 
+        paths: "{{ nexus_install_dest }}"
+        pattern: "nexus-*"
+        file_type: directory
+      register: find_result
+
+    - name: Rename Nexus folder to nexus
+      ansible.builtin.command: mv "{{ find_result.files[0].path }}" "{{ nexus_install_path }}"
+      when: not stat_result.stat.exists  
+
+- name: Create Nexus user and set permissions
+  hosts: "{{ target_hosts }}"
+  vars_files:
+    - nexus_project-vars.yml
+  tasks:
+    - name: Ensure group nexus exists
+      ansible.builtin.group: 
+        name: "{{ nexus_group }}"
+        state: present
+
+    - name: Create Nexus user
+      ansible.builtin.user: 
+        name: "{{ nexus_user }}"
+        group: "{{ nexus_group }}"
+        shell: /bin/bash
+        create_home: yes
+
+    - name: Make Nexus user owner of Nexus folder
+      ansible.builtin.file: 
+        path: "{{ nexus_install_path }}"
+        state: directory
+        owner: "{{ nexus_user }}"
+        group: "{{ nexus_group }}"
+        recurse: yes    
+
+    - name: Make Nexus user owner of sonatype-work folder
+      ansible.builtin.file:
+        path: "{{ sonatype_work_path }}"
+        state: directory
+        owner: "{{ nexus_user }}"
+        group: "{{ nexus_group }}"
+        recurse: yes
+
+- name: Start Nexus with Nexus user
+  hosts: "{{ target_hosts }}"
+  become: yes
+  become_user: "{{ nexus_user }}"     
+  vars_files:
+    - nexus_project-vars.yml
+  tasks:
+    - name: Set run_as_user in nexus.rc
+      ansible.builtin.lineinfile:
+        path: "{{ nexus_install_path }}/bin/nexus.rc"
+        regexp: '^#run_as_user=""'
+        line: 'run_as_user="{{ nexus_user }}"'
+
+    - name: Start Nexus service
+      ansible.builtin.command: "{{ nexus_install_path }}/bin/nexus start"
+
+- name: Verify Nexus is running
+  hosts: "{{ target_hosts }}"
+  vars_files:
+    - nexus_project-vars.yml
+  tasks:
+    - name: Check Nexus process with ps
+      ansible.builtin.shell: "ps aux | grep nexus | grep -v grep"
+      register: app_status
+
+    - ansible.builtin.debug: 
+        msg: "{{ app_status.stdout_lines }}"
+
+    - name: Wait one minute
+      ansible.builtin.pause:
+        minutes: 1
+
+    - name: Check Nexus listening ports with netstat
+      ansible.builtin.shell: "netstat -plnt | grep {{ nexus_port }}"
+      register: netstat_result
+
+    - ansible.builtin.debug: 
+        msg: "{{ netstat_result.stdout_lines }}"

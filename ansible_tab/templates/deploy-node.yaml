@@ -1,0 +1,81 @@
+---
+- name: Install Node.js and npm
+  hosts: "{{ target_hosts }}"
+  vars_files:
+    - node_project-vars
+  tasks:
+    - name: Update apt repository and cache
+      ansible.builtin.apt:
+        update_cache: yes
+        force_apt_get: yes
+        cache_valid_time: 3600
+
+    - name: Install Node.js and npm
+      ansible.builtin.apt:
+        name:
+          - "{{ nodejs_package }}"
+          - "{{ npm_package }}"
+        state: present
+
+- name: Create new Linux user for Node app
+  hosts: "{{ target_hosts }}"
+  vars_files:
+    - node_project-vars
+  tasks:
+    - name: Create Linux user
+      ansible.builtin.user:
+        name: "{{ linux_user }}"
+        comment: "Node User"
+        group: "{{ linux_group }}"
+        shell: /bin/bash
+        create_home: yes
+
+- name: Deploy Node.js application
+  hosts: "{{ target_hosts }}"
+  become: yes
+  become_user: "{{ linux_user }}"
+  vars_files:
+    - node_project-vars
+  tasks:
+    - name: Ensure application directory exists
+      ansible.builtin.file:
+        path: "{{ app_directory }}"
+        state: directory
+        owner: "{{ linux_user }}"
+        group: "{{ linux_group }}"
+        mode: '0755'
+
+    - name: Unpack the Node.js application
+      ansible.builtin.unarchive:
+        src: "{{ app_source }}/nodejs-app-{{ app_version }}.tgz"
+        dest: "{{ app_directory }}"
+        owner: "{{ linux_user }}"
+        group: "{{ linux_group }}"
+        remote_src: yes
+
+    - name: Install application dependencies
+      community.general.npm:
+        path: "{{ app_directory }}/package"
+        state: present
+
+    - name: Start the application
+      ansible.builtin.systemd:
+        name: "{{ app_service }}"
+        state: started
+        enabled: yes
+
+    - name: Check if Node.js app is running
+      ansible.builtin.shell: |
+        systemctl is-active {{ app_service }}
+      register: app_status
+      changed_when: false
+      failed_when: false
+
+    - name: Display app running status
+      ansible.builtin.debug:
+        msg: >
+          {% if app_status.stdout == "active" %}
+            Node.js app is running!
+          {% else %}
+            Node.js app is NOT running!
+          {% endif %}

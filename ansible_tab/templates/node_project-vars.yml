@@ -1,0 +1,19 @@
+
+# Hosts
+target_hosts: "159.89.1.54"  # Can be an IP address or a group defined in your inventory
+
+# Packages
+nodejs_package: "nodejs"
+npm_package: "npm"
+
+# Linux User Configuration
+linux_user: "nodeuser"
+linux_group: "admin"
+
+# Application Configuration
+app_directory: "/home/nodeuser/app"
+app_source: "/path/to/source"  # Replace with the actual path where the .tgz file is located
+app_version: "1.0.0"  # Replace with your application's version
+
+# Service Configuration
+app_service: "nodeapp"  # Systemd service name

@@ -1,0 +1,23 @@
+# ci_config.yml
+variables:
+  # Deployment Configuration
+  DEPLOYMENT_SERVER_HOST: "13.37.235.23"
+  APP_ENDPOINT: http://ec2-13-37-235-23.eu-west-3.compute.amazonaws.com
+
+  # Docker Registry Information
+  CI_REGISTRY: $CI_REGISTRY
+  CI_REGISTRY_USER: $CI_REGISTRY_USER
+  CI_REGISTRY_PASSWORD: $CI_REGISTRY_PASSWORD
+
+  # SSH Configuration
+  SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY
+
+  # Default Tags for Jobs
+  DEFAULT_TAGS: "ec2, docker, remote"
+  BUILD_TAGS: "ec2, shell, remote"
+  DEPLOY_TAGS: "ec2, shell, remote"
+
+# Default Variables for Docker
+docker:
+  image_prefix: $CI_REGISTRY_IMAGE/microservice
+  network_name: micro_service

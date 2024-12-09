@@ -1,0 +1,26 @@
+# project-vars.yml
+
+# Hosts
+docker_server: "docker_server"  # Replace with your actual server or Ansible group
+
+# Packages
+python_package: "python3"
+docker_package: "docker"
+
+# Docker-compose Configuration
+docker_compose_version: "1.27.4"  # Specify the desired Docker Compose version
+docker_compose_dest: "/usr/local/bin/docker-compose"
+
+# Linux User Configuration
+linux_user: "moses"
+linux_group: "docker"
+linux_groups: "adm,docker"
+
+# Docker Compose File Paths
+docker_compose_src: "/Users/moses/file"  # Replace with the actual path to your docker-compose.yaml
+docker_compose_dest_path: "/home/moses/docker-compose.yaml"
+
+# Docker Registry Credentials
+docker_registry_url: "https://index.docker.io/v1/"
+docker_username: "webdev2123"
+docker_password: "your_docker_password_here"  # Consider using Ansible Vault for security

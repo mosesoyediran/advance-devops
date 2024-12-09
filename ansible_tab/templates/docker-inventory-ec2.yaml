@@ -1,0 +1,99 @@
+---
+- name: Wait for SSH connection
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Ensure SSH port is open and accessible
+      ansible.builtin.wait_for:
+        port: 22
+        delay: 10
+        timeout: 100
+        search_regex: OpenSSH
+        host: '{{ (ansible_ssh_host | default(ansible_host)) | default(inventory_hostname) }}'
+      vars:
+        ansible_connection: local
+        ansible_python_interpreter: /usr/bin/python
+
+- name: Install Docker, Python3, and Docker-compose
+  hosts: "{{ docker_server }}"
+  become: true
+  gather_facts: false
+  vars_files:
+    - inventory-project-vars.yml
+  tasks:
+    - name: Install Python3 and Docker
+      ansible.builtin.yum:
+        name:
+          - "{{ python_package }}"
+          - "{{ docker_package }}"
+        update_cache: yes
+        state: present
+      vars:
+        ansible_python_interpreter: /usr/bin/python
+
+    - name: Install Docker-compose
+      ansible.builtin.get_url:
+        url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-{{ lookup('pipe', 'uname -m') }}"
+        dest: "{{ docker_compose_dest }}"
+        mode: '0755'
+
+    - name: Start Docker daemon
+      ansible.builtin.systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Install Docker Python modules
+      ansible.builtin.pip:
+        name:
+          - docker
+          - docker-compose
+        state: present
+
+- name: Create new Linux user
+  hosts: "{{ docker_server }}"
+  become: true
+  vars_files:
+    - inventory-project-vars.yml
+  tasks:
+    - name: Create new Linux user
+      ansible.builtin.user:
+        name: "{{ linux_user }}"
+        groups: "{{ linux_groups }}"
+        shell: /bin/bash
+        create_home: yes
+
+- name: Start Docker containers
+  hosts: "{{ docker_server }}"
+  become: true
+  become_user: "{{ linux_user }}"
+  vars_files:
+    - inventory-project-vars.yml
+  tasks:
+    - name: Copy Docker Compose file
+      ansible.builtin.copy:
+        src: "{{ docker_compose_src }}"
+        dest: "{{ docker_compose_dest_path }}"
+        owner: "{{ linux_user }}"
+        group: "{{ linux_group }}"
+        mode: '0644'
+
+    - name: Docker login
+      community.docker.docker_login:
+        registry_url: "{{ docker_registry_url }}"
+        username: "{{ docker_username }}"
+        password: "{{ docker_password }}"
+
+    - name: Start containers from Docker Compose
+      community.docker.docker_compose:
+        project_src: "{{ docker_compose_dest_path | dirname }}"
+        files:
+          - "{{ docker_compose_dest_path }}"
+        state: present
+
+    - name: Verify Docker containers are running
+      ansible.builtin.command: docker ps
+      register: docker_ps
+
+    - ansible.builtin.debug:
+        msg: "{{ docker_ps.stdout_lines }}"

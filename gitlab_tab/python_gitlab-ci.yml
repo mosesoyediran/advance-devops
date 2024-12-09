@@ -1,0 +1,53 @@
+include:
+  - local: 'ci_config.yml'
+
+# Stages Section
+stages:
+  - test
+  - build
+  - deploy
+
+# Job Definitions
+run_tests:
+  stage: test
+  image: *python_image  # Using the default Python image
+  tags:
+    - ec2
+    - docker
+    - remote
+
+  before_script:
+    - apt-get update && apt-get install -y make
+  script:
+    - make test
+
+build_image:
+  stage: build
+  image: $DOCKER_IMAGE  # Referencing Docker image variable
+  services:
+    - $DOCKER_DIND  # Referencing Docker-in-Docker service
+  tags:
+    - ec2
+    - docker
+    - remote
+   # Using default tags
+  before_script:
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
+  script:
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG .
+    - docker push $IMAGE_NAME:$IMAGE_TAG
+
+deploy:
+  stage: deploy
+  tags:
+    - ec2
+    - docker
+    - remote
+
+  before_script:
+    - chmod 400 $SSH_KEY
+  script:
+    - ssh -o StrictHostKeyChecking=no -i $SSH_KEY $SSH_USER@$SSH_HOST "
+      docker login -u $REGISTRY_USER -p $REGISTRY_PASS &&
+      docker ps -aq | xargs docker stop | xargs docker rm &&
+      docker run -d -p 5000:5000 $IMAGE_NAME:$IMAGE_TAG"

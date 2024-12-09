@@ -1,0 +1,26 @@
+---
+- name: Confirm SSH key being used
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Display SSH key path
+      command: "echo $ANSIBLE_SSH_PRIVATE_KEY_FILE"
+      register: ssh_key_output
+
+    - name: Print SSH key path
+      debug:
+        var: ssh_key_output.stdout
+
+- name: Wait for SSH connection
+  hosts: all
+  gather_facts: False
+  tasks:
+    - name: Ensure SSH port is open
+      wait_for:
+        port: 22
+        delay: 10
+        timeout: 300
+        host: "{{ (ansible_ssh_host | default(ansible_host)) | default(inventory_hostname) }}"
+      vars:
+        ansible_connection: ssh
+        ansible_python_interpreter: /usr/bin/python3

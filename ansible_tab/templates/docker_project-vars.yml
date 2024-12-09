@@ -1,0 +1,26 @@
+# project-vars.yml
+
+# Hosts
+target_hosts: "all"  # Can be an IP address, hostname, or Ansible group
+
+# Packages
+python_package: "python3"
+docker_package: "docker"
+
+# Docker-compose Configuration
+docker_compose_url: "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-Linux-{{ lookup('pipe', 'uname -m') }}"
+docker_compose_dest: "/usr/local/bin/docker-compose"
+
+# Linux User Configuration
+linux_user: "nana"
+linux_group: "docker"
+linux_groups: "adm,docker"
+
+# Docker Compose File Paths
+docker_compose_src: "/Users/nanajanashia/Demo-projects/Bootcamp/Exercises/bootcamp-java-mysql-project/docker-compose-full.yaml"
+docker_compose_dest_path: "/home/nana/docker-compose.yaml"
+
+# Docker Registry Credentials
+docker_registry_url: "https://index.docker.io/v1/"
+docker_username: "nanajanashia"
+docker_password: "your_docker_password_here"  # Consider using Ansible Vault for security
